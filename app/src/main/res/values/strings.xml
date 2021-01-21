@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Gambit</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="image_dish">Image dish</string>
+    <string name="add_to_cart">В корзину</string>
+    <string name="price_text">%d ₽</string>
+</resources>
