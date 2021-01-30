@@ -1,32 +1,37 @@
 package com.example.gambittest;
 
+import android.app.Application;
+
+import com.example.gambittest.data.DataManager;
 import com.example.gambittest.data.MenuApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class App {
+public class App extends Application {
 
-    private static final String BASE_URL = "https://api.gambit-app.ru/category/";
-    private static App networkFoodApi;
-    private Retrofit retrofit;
+    private static Retrofit retrofit;
+    private static DataManager dm;
+    private static MenuApi api;
 
-    private App() {
+    public static MenuApi getJSONApi() {
+        return api;
+    }
+
+    public static DataManager getDataManager() {
+        return dm;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl("https://api.gambit-app.ru/category/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-    }
 
-    public static App getNetworkFoodApi() {
-        if (networkFoodApi == null) {
-            networkFoodApi = new App();
-        }
-        return networkFoodApi;
-    }
-
-    public MenuApi getJSONApi() {
-        return retrofit.create(MenuApi.class);
+        dm = new DataManager();
+        api = retrofit.create(MenuApi.class);
     }
 }

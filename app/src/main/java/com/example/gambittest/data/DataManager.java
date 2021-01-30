@@ -14,7 +14,7 @@ public class DataManager {
 
     public void getMenuItems(RequestListener requestListener) {
 
-        App.getNetworkFoodApi().getJSONApi().getData("1")
+        App.getJSONApi().getData("1")
                 .enqueue(new Callback<List<Menu>>() {
                     @Override
                     public void onResponse(Call<List<Menu>> call, Response<List<Menu>> response) {
